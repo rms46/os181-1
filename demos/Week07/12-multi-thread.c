@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "99-myutils.h"
 #define  NTHREAD      8
-#define  RECDEEP      3
+#define  RECDEEP      4
 #define  LOOP1  100000
 #define  LOOP2  100000
 #define  LOOP3  100000
