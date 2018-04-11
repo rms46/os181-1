@@ -1,8 +1,8 @@
 /*
- * (c) 2015-2017 Rahmat M. Samik-Ibrahim
+ * (c) 2015-2018 Rahmat M. Samik-Ibrahim
  * http://rahmatm.samik-ibrahim.vlsm.org/
  * This is free software.
- * REV04 Tue Nov  7 19:58:50 WIB 2017
+ * REV05 Wed Apr 11 17:00:36 WIB 2018
  * REV02 Tue Apr 18 15:28:19 WIB 2017
  * REV01 Wed Nov  2 11:49:30 WIB 2016
  * START Xxx Sep 30 XX:XX:XX UTC 2015
@@ -13,10 +13,10 @@
 #include <unistd.h>
 #include "99-myutils.h"
 
-#define  LOOP0    10
+#define  LOOP0     5
 #define  LOOP1   500
 #define  LOOP2  1000
-#define  LOOP3 10000
+#define  LOOP3 20000
 
 volatile int loop = LOOP0;
 int          share;
