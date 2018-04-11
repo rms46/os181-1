@@ -9,22 +9,25 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "99-myutils.h"
-#define  NTHREAD      4
-#define  RECDEEP      2
-#define  LOOP1  1000000
-#define  LOOP2  1000000
-#define  LOOP3  1000000
+#define  NTHREAD      8
+#define  RECDEEP      3
+#define  LOOP1  100000
+#define  LOOP2  100000
+#define  LOOP3  100000
 
+volatile int share;
 void  multiloop(int recursive) {
    int dummy;
    if (recursive-- < 0) return;
+   sleep(1);
    for (int ii; ii<LOOP1; ii++) {
       for (int jj; jj<LOOP2; jj++) {
-         for (int kk; kk<LOOP1; kk++) {
-            dummy=ii*jj*kk;
+         for (int kk; kk<LOOP3; kk++) {
+            dummy+=ii*jj*kk;
          }
       }
    }
+   share=dummy;
    multiloop(recursive);
 }
 
