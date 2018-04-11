@@ -33,8 +33,7 @@ void* manager (void* a) {
    mulvar2 = 3;
    divvar1 = 4;
    divvar2 = 2;
-   sem_post  (&mutex);
-
+   sem_post  (&mutex); 
    for (int ii=0; ii< NThreads;ii++)
        sem_post (&switch2);
    for (int ii=0; ii< NThreads;ii++)
