@@ -2,7 +2,7 @@
 # Feel free to copy and/or modify and/or distribute it, 
 # provided this notice, and the copyright notice, are preserved. 
 #
-# REV05 Mon Nov 27 10:18:20 WIB 2017
+# REV06 Thu Apr 12 20:48:58 WIB 2018
 # REV02 Fri Apr 28 19:11:50 WIB 2017
 # REV00 Xxx Sep 30 XX:XX:XX UTC 2015
 # START Xxx Mar 30 02:13:01 UTC 2011
@@ -24,6 +24,8 @@ P09=09-rpsls
 P10=10-kirikanan
 P11=11-thread
 P12=12-multi-thread
+P13=13-mini-sudoku-4x4
+
 
 P99=99-myutils
  
@@ -42,6 +44,7 @@ EXECS= \
 	$(P10) \
 	$(P11) \
 	$(P12) \
+	$(P13) \
 
 
 OBJ= \
@@ -58,6 +61,7 @@ OBJ= \
 	$(P10).o \
 	$(P11).o \
 	$(P12).o \
+	$(P13).o \
 	$(P99).o \
 
 
@@ -140,6 +144,12 @@ $(P12): $(P12).o $(P99).o
 
 $(P12).o: $(P12).c $(P99).h
 	$(CC) -c $(CCOPT) $(P12).c
+
+$(P13): $(P13).o $(P99).o
+	$(CC) $(CCOPT) $(P13).o $(P99).o $(CCLNK) -o $(P13)
+
+$(P13).o: $(P13).c $(P99).h
+	$(CC) -c $(CCOPT) $(P13).c
 
 $(P99).o: $(P99).c $(P99).h
 	$(CC) -c $(CCOPT) $(P99).c
