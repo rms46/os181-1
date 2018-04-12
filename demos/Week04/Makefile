@@ -1,4 +1,4 @@
-# REV07 Mon Mar  5 19:24:54 WIB 2018
+# REV08 Thu Apr 12 20:44:27 WIB 2018
 # REV03 Thu Mar  9 21:18:27 WIB 2017
 # START Tue Sep 13 11:44:18 WIB 2016
 
@@ -14,6 +14,8 @@ P06=06-pointer-address
 P07=07-addresses
 P08=08-passing-parameters
 P09=09-struct
+P10=10-os172
+
 
 EXECS= \
         $(P00) \
@@ -26,6 +28,8 @@ EXECS= \
         $(P07) \
         $(P08) \
         $(P09) \
+        $(P10) \
+
 
 DEMOFILES=\
 	demo-file1.txt \
@@ -72,6 +76,9 @@ $(P08): $(P08).c
 
 $(P09): $(P09).c
 	$(CC) $(P09).c -o $(P09)
+
+$(P10): $(P10).c
+	$(CC) $(P10).c -o $(P10)
 
 clean:
 	rm -f ${EXECS} 
