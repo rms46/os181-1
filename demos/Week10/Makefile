@@ -4,6 +4,9 @@
 
 CC=gcc
 
+P00=00-server
+P01=01-client
+P02=02-clisvr
 P50=50-get-put
 P51=51-get-put-loop
 P52=52-open-close
@@ -48,44 +51,10 @@ DEMOFILES=\
         $(P61)-demo.txt \
         
 
-
 all:  $(EXECS)
 
-$(P50): $(P50).c
-	$(CC) $(P50).c -o $(P50)
-
-$(P51): $(P51).c
-	$(CC) $(P51).c -o $(P51)
-
-$(P52): $(P52).c
-	$(CC) $(P52).c -o $(P52)
-
-$(P53): $(P53).c
-	$(CC) $(P53).c -o $(P53)
-
-$(P54): $(P54).c
-	$(CC) $(P54).c -o $(P54)
-
-$(P55): $(P55).c
-	$(CC) $(P55).c -o $(P55)
-
-$(P56): $(P56).c
-	$(CC) $(P56).c -o $(P56)
-
-$(P57): $(P57).c
-	$(CC) $(P57).c -o $(P57)
-
-$(P58): $(P58).c
-	$(CC) $(P58).c -o $(P58)
-
-$(P59): $(P59).c
-	$(CC) $(P59).c -o $(P59)
-
-$(P60): $(P60).c
-	$(CC) $(P60).c -o $(P60)
-
-$(P61): $(P61).c
-	$(CC) $(P61).c -o $(P61)
+$(EXECS): %: %.c $(DEPS)
+	$(CC) $(CFLAGS) $< -o $@ 
 
 clean:
 	rm -f ${EXECS} 
@@ -94,4 +63,5 @@ clean:
  
 demo:
 	bash .shsh
+
 
