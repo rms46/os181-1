@@ -1,4 +1,4 @@
-# REV07 Mon Mar  5 19:29:56 WIB 2018
+# REV08 Thu Apr 12 20:35:52 WIB 2018
 # REV03 Thu Mar  9 21:18:27 WIB 2017
 # START Tue Sep 13 11:44:18 WIB 2016
 
@@ -15,6 +15,7 @@ P57=57-dup
 P58=58-dup2
 P59=59-io
 P60=60-readwrite
+P61=61-os172
 
 
 EXECS= \
@@ -29,6 +30,7 @@ EXECS= \
         $(P58) \
         $(P59) \
         $(P60) \
+        $(P61) \
 
 
 DEMOFILES=\
@@ -43,6 +45,8 @@ DEMOFILES=\
 	demo-file9.txt \
 	demo-fileA.txt \
 	demo-copy.txt  \
+        $(P61)-demo.txt \
+        
 
 
 all:  $(EXECS)
@@ -79,6 +83,9 @@ $(P59): $(P59).c
 
 $(P60): $(P60).c
 	$(CC) $(P60).c -o $(P60)
+
+$(P61): $(P61).c
+	$(CC) $(P61).c -o $(P61)
 
 clean:
 	rm -f ${EXECS} 
