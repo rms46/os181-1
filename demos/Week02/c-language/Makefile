@@ -1,3 +1,4 @@
+# REV03 Thu Apr 12 18:59:40 WIB 2018
 # REV02 Mon Sep 18 09:08:32 WIB 2017
 # START Tue Sep 13 11:44:18 WIB 2016
 
@@ -12,6 +13,7 @@ EXECS= \
 	05-envp \
 	06-scan \
 	07-status \
+	08-uts172 \
 
 
 all:  $(EXECS)
@@ -39,6 +41,9 @@ all:  $(EXECS)
 
 07-status: 07-status.c
 	$(CC) -o 07-status 07-status.c
+
+08-uts172: 08-uts172.c
+	$(CC) -o 08-uts172 08-uts172.c
 
 clean:
 	rm -f ${EXECS}
