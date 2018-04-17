@@ -4,7 +4,7 @@
  * This program is free script/software. This program is distributed in the 
  * hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
  * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * REV06 Thu Apr 12 20:55:09 WIB 2018
+ * REV07 Tue Apr 17 09:12:54 WIB 2018
  * START Mon Dec  4 18:52:57 WIB 2017
  */
 
@@ -152,7 +152,8 @@ void* displaySudoku (void* a) {
 
 // This is MAIN
 void main(void) {
-   printf   ("MAIN: START\n");
+   printf   ("MAIN:\nRUN: ./13-sudoku-mini-4x4 < 13-1-data-sudoku.txt");
+   printf   (     "\n OR: Enter the value of the 16 cells (4x4)\n");
    sem_init (&mutexing, 0, 1);
    sem_init (&syncing1, 0, 0);
    sem_init (&syncing2, 0, 0);
@@ -167,25 +168,8 @@ void main(void) {
 }
 
 // END
-/* ****
-
-Consider this following C program "sudoku-mini-4x4.c"
-
-1) How many Semaphores are created in that program?
-
-2) Specify what the names of those Semaphores are!
-
-3) How many threads are created in that program?
-
-4) Specify what the (uniq) names of those threads are!
-
-5) How many critical zone(s) are there in that program?
-
-6) Specify the line numbers of those critical zone(s)!
-
-7) What is inside file "sudoku-start.txt" is the output of executing:
-
-PROMPT> ./sudoku-mini-4x4 < soduko-start.txt
+/* ***
+PROMPT> ./13-sudoku-mini-4x4 < 13-1-data-sudoku.txt
 
 MAIN: START
 
@@ -209,8 +193,5 @@ PROMPT>
 0 2  3 0
 1 0  0 0
 
-8) Name the function that receives the input (file "sudoku-start.txt") in the program above!
-
 */
-
 
