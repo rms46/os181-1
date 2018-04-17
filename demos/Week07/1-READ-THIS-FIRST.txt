@@ -19,7 +19,9 @@ File Listing:
 00-thread.c 01-thread.c 02-prodkon.c 03-readwrite.c
 04-readwrite.c 05-alu.c 06-balap.c 07-sudokuSV.c
 08-mainDadu.c 09-rpsls.c 10-kirikanan.c 11-thread.c
-12-multi-thread.c
+12-multi-thread.c 13-mini-sudoku-4x4.c
+* Data Files:
+13-1-data-sudoku.txt 13-2-data-sudoku.txt 13-3-data-sudoku.txt 13-4-data-sudoku.txt
 * MYUTILS:
 99-myutils.h 99-myutils.c 
 
@@ -28,7 +30,7 @@ To list files, run:  ls -al
 To compile the “.c” files, run make
 
 ===================================
-REV00: Wed Apr 11 19:05:37 WIB 2018
+REV01: Tue Apr 17 09:19:27 WIB 2018
 START: Wed Apr 11 19:05:37 WIB 2018
 
 # Copyright (C) 2018 Rahmat M. Samik-Ibrahim 
