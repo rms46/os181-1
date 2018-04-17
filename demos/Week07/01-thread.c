@@ -1,8 +1,10 @@
 /*
- * (c) 2015-2017 Rahmat M. Samik-Ibrahim
+ * Copyright (C) 2015-2018 Rahmat M. Samik-Ibrahim
  * http://rahmatm.samik-ibrahim.vlsm.org/
- * This is free software.
- * REV03 Tue Nov  7 19:59:01 WIB 2017
+ * This program is free script/software. This program is distributed in the 
+ * hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
+ * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * REV04 Tue Apr 17 09:30:43 WIB 2018
  * REV01 Wed Nov  2 11:49:39 WIB 2016
  * START Xxx Sep 30 XX:XX:XX UTC 2015
  */
