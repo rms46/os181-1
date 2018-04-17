@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Rahmat M. Samik-Ibrahim
+ * Copyright (C) 2017-2018 Rahmat M. Samik-Ibrahim (2017-2)
  * http://rahmatm.samik-ibrahim.vlsm.org/
  * This program is free script/software. This program is distributed in the 
  * hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
