@@ -7,14 +7,14 @@
  * purpose, even commercially).  This program is distributed in the hope that 
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * REV01 Wed Apr 18 20:58:31 WIB 2018
+ * REV02 Wed Apr 18 22:03:23 WIB 2018
  * REV00 Wed Apr 18 19:50:01 WIB 2018
  * START Xxx Xxx XX XX:XX:XX WIB 2015
  */
 
 
 #define ITERS 5
-#define SEM_NAME "/semaphore20"
+#define SEM_NAME "/semaphore-demo-rms46"
 /* ATTN:
    "Dead semaphores" are lingering in folder "/dev/shm/".
    If you are the owner, you can delete "dead semaphores" manually.
