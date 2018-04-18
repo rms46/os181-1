@@ -1,8 +1,38 @@
+exit 1
+This demo is available in badak:///extra/.
+See also: https://github.com/UI-FASILKOM-OS/os181.
+You should copy this folder to your own working folder.
+DO NOT work inside the /extra folder!
+=======================================================
+
+Folder Name:
+Week08/
+
+To copy the folder to your home directory:
+cp -r /extra/Week08/W08-demos/ W08-demos/
+=======================================================
+
+File Listing:
+* 1-READ-THIS-FIRST.txt (this file)
+* disk-images/  (directory)
+* fuse-tutorial-2017-10-03 (fuse tutorial)
+* fuse-tutorial.tgz source.
+
+ALL:
+To make sure you understand Concurency and Synchronization;
+you should repeat Week06 and Week07!  Do not forget to update
+your "README.md" file!
+
+===================================
+REV05 Wed Apr 18 09:53:47 WIB 2018
 REV04 Mon Nov 27 17:02:11 WIB 2017
-REV02 Wed Nov 15 14:15:48 WIB 2017
-REV01 Tue May  2 10:21:45 WIB 2017
 START Mon Nov 21 14:39:48 WIB 2016
-==================================
+
+# Copyright (C) 2018 Rahmat M. Samik-Ibrahim 
+# http://RahmatM.Samik-Ibrahim.vLSM.org/
+# This free document is distributed in the hope that it will be 
+# useful, but WITHOUT ANY WARRANTY; without even the implied 
+# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 A. disk-images
 
@@ -62,3 +92,4 @@ EXTRA:
 
 
 RMS
+
