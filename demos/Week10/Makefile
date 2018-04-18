@@ -4,9 +4,9 @@
 
 CC=gcc
 
-P00=00-server
-P01=01-client
-P02=02-clisvr
+P10=10-server
+P11=11-client
+P12=12-clisvr
 P50=50-get-put
 P51=51-get-put-loop
 P52=52-open-close
@@ -22,9 +22,9 @@ P61=61-os172
 
 
 EXECS= \
-        $(P00) \
-        $(P01) \
-        $(P02) \
+        $(P10) \
+        $(P11) \
+        $(P12) \
         $(P50) \
         $(P51) \
         $(P52) \
