@@ -1,13 +1,15 @@
-# REV09 Wed Apr 18 13:45:04 WIB 2018
+# REV11 Wed Apr 18 20:36:21 WIB 2018
 # REV03 Thu Mar  9 21:18:27 WIB 2017
 # START Tue Sep 13 11:44:18 WIB 2016
 
 CC=gcc
-CFLAGS=-std=gnu99
+CFLAGS=-std=gnu99 -pthread
 
 P10=10-server
 P11=11-client
 P12=12-clisvr
+P20=20-parent
+P21=21-child
 P50=50-get-put
 P51=51-get-put-loop
 P52=52-open-close
@@ -26,6 +28,8 @@ EXECS= \
         $(P10) \
         $(P11) \
         $(P12) \
+        $(P20) \
+        $(P21) \
         $(P50) \
         $(P51) \
         $(P52) \
