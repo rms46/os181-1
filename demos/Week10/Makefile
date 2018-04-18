@@ -1,8 +1,9 @@
-# REV08 Thu Apr 12 20:35:52 WIB 2018
+# REV09 Wed Apr 18 13:45:04 WIB 2018
 # REV03 Thu Mar  9 21:18:27 WIB 2017
 # START Tue Sep 13 11:44:18 WIB 2016
 
 CC=gcc
+CFLAGS=-std=gnu99
 
 P10=10-server
 P11=11-client
