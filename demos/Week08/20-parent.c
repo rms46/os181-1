@@ -7,10 +7,17 @@
  * purpose, even commercially).  This program is distributed in the hope that 
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * REV01 Wed Apr 18 20:51:32 WIB 2018
+ * REV01 Wed Apr 18 21:25:02 WIB 2018
  * REV00 Wed Apr 18 19:50:01 WIB 2018
  * START Xxx Xxx XX XX:XX:XX WIB 2015
  */
+
+#define SEM_NAME "/semaphore-demo-rms46"
+/* ATTN:
+   Replace the "rms46" part in SEM_NAME with your userid!
+   "Dead semaphores" are lingering in folder "/dev/shm/".
+   If you are the owner, you can delete "dead semaphores" manually.
+ * *************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +28,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#define SEM_NAME "/semaphore20"
 #define SEM_PERMS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP)
 #define INITIAL_VALUE 0
 
@@ -52,7 +58,7 @@ int main(void) {
       }
       printf("Parent PID[%d] creates child PID[%d]\n", mypid, pids[ii]);
    }
-   printf("Parent PID[%d] signals semaphore[%s]\n", mypid, SEM_NAME);
+   printf("Parent PID[%d] signals [%s]\n", mypid, SEM_NAME);
    sem_post(semaphore);
    for (ii = 0; ii < sizeof(pids)/sizeof(pids[0]); ii++)
       wait(NULL);

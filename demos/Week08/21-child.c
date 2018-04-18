@@ -12,34 +12,39 @@
  * START Xxx Xxx XX XX:XX:XX WIB 2015
  */
 
+
+#define ITERS 5
+#define SEM_NAME "/semaphore20"
+/* ATTN:
+   "Dead semaphores" are lingering in folder "/dev/shm/".
+   If you are the owner, you can delete "dead semaphores" manually.
+ * *************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <semaphore.h>
 #include <unistd.h>
+#include <time.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-
-#define SEM_NAME "/semaphore20"
-#define ITERS 3
+#define  DELAY 10000000
 
 int main(void) {
+    pid_t mypid = getpid();
     sem_t *semaphore = sem_open(SEM_NAME, O_RDWR);
+
     if (semaphore == SEM_FAILED) {
         perror("sem_open(3) failed");
         exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < ITERS; i++) {
-        if (sem_wait(semaphore) < 0) {
-            perror("sem_wait(3) failed on child");
-            continue;
-        }
-        printf("PID %ld acquired semaphore\n", (long) getpid());
-
-        if (sem_post(semaphore) < 0) {
-            perror("sem_post(3) error on child");
-        }
+    printf("Child  PID[%d] is UP!\n", mypid);
+    for (int ii = 0; ii < ITERS; ii++) {
         sleep(1);
+        sem_wait(semaphore);
+        printf("Child  PID[%d] is inside  the Critical Section\n", mypid);
+        sem_post(semaphore);
+        printf("Child  PID[%d] is outside the Critical Section\n", mypid);
     }
     if (sem_close(semaphore) < 0)
         perror("sem_close(3) failed");
