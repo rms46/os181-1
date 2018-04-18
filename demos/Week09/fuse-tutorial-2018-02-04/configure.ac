@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([fuse-tutorial], [2017-10-03], [joseph@pfeifferfamily.net])
+AC_INIT([fuse-tutorial], [2018-02-04], [joseph@pfeifferfamily.net])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/bbfs.c])
 AC_CONFIG_HEADERS([src/config.h])

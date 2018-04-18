@@ -24,7 +24,7 @@ you should repeat Week06 and Week07!  Do not forget to update
 your "README.md" file!
 
 ===================================
-REV05 Wed Apr 18 09:53:47 WIB 2018
+REV05 Wed Apr 18 10:31:49 WIB 2018
 REV04 Mon Nov 27 17:02:11 WIB 2017
 START Mon Nov 21 14:39:48 WIB 2016
 
@@ -51,8 +51,8 @@ B. fuse-tutorial
    tar tfz fuse-tutorial.tgz
    tar xfz fuse-tutorial.tgz
 
-4. Enter the directory (may be different)
-   cd fuse-tutorial-2017-10-03/
+4. Enter the directory (yours may be a different version)
+   cd fuse-tutorial-2018-02-04/
    ls -al
 
 5. Read the manual with  
@@ -90,6 +90,4 @@ EXTRA:
 # df: checking diskspace and filesystems
 # GUID (Globally Unique IDentifiers) ls -al /dev/disk/by-uuid
 
-
 RMS
-

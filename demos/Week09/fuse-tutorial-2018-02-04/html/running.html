@@ -4,10 +4,29 @@
 </head>
 
 <body>
-<h1>Configuring, Compiling and Running</h1>
+<h1>Environment, Configuring, Compiling and Running</h1>
 <p>
 This page of the tutorial explains how to build the BBFS filesystem
 program and use it to mount a directory.
+</p>
+<h2>Environment</h2>
+<p>
+This tutorial describes the use of FUSE version 2.9.x (API level 26).
+Development of FUSE itself has gone beyond this level (the most recent
+release is 3.2.1); unfortunately, the developers broke backward
+compatibility with version 3.  I'm now looking into what changes I need
+to make to bring this tutorial in line with the latest versions.  In
+the mean time, if you want to use the code from this tutorial I
+strongly recommend you install an older version.
+</p>
+<p>
+In order to compile against the FUSE libraries, you need to make sure
+you have installed the development version of the libraries.  In
+Debian and Ubuntu the package name is "libfuse-dev"; in Fedora it's
+"fuse-devel".  Note in both cases that the distributions are only
+using fuse version 2.9.7, so if you install using the package managers
+you'll automatically be using a version that is compatible with this
+tutorial.
 </p>
 <h2>Configuring and Compiling</h2>
 <p>This tutorial uses the GNU autotools system for configuration.  As
@@ -168,5 +187,5 @@ log.o : log.c log.h params.h
 <code>struct&nbsp;fuse_operations</code></a></p>
 <hr />
 <address></address>
-<!-- hhmts start -->Last modified: Thu Jun 12 18:12:16 MDT 2014 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Sun Feb  4 09:16:09 MST 2018 <!-- hhmts end -->
 </body> </html>
