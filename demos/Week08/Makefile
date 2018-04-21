@@ -6,11 +6,13 @@ CFLAGS=-std=gnu99 -pthread
 
 P20=20-parent
 P21=21-child
+P22=22-hello-goodbye
 
 
 EXECS= \
         $(P20) \
         $(P21) \
+        $(P22) \
 
 
 DEMOFILES=\
