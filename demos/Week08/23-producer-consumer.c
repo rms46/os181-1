@@ -9,29 +9,33 @@
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * REV02 Mon Apr 23 11:54:46 WIB 2018
  * REV00 Wed Apr 18 19:50:01 WIB 2018
- * START Xxx Xxx XX XX:XX:XX WIB 2015
+ * START Xxx Xxx XX XX:XX:XX WIB 2013
  */
 
 #include <stdio.h>
-#include <string.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <sys/mman.h>
+#include <sys/types.h>
+
 #define PROTECTION PROT_READ     | PROT_WRITE
 #define VISIBILITY MAP_ANONYMOUS | MAP_SHARED
 
 int main() {
+  int  mypid = getpid();
   int* shmem = mmap(NULL, sizeof(int), PROTECTION, VISIBILITY, 0, 0);
   *shmem = 0;
+  printf("HELLO, this is PID[%d]\n",mypid);
   int pid = fork();
   if (pid == 0) {
-    printf("Consumer reads:  %d\n", *shmem);
+    mypid = getpid();
+    printf("Consumer[%d] reads:  %d\n", mypid, *shmem);
     *shmem = 1; 
-    printf("Consumer writes: %d\n", *shmem);
+    printf("Consumer[%d] writes: %d\n", mypid, *shmem);
   } else {
-    printf("Producer reads:  %d\n", *shmem);
+    printf("Producer[%d] reads:  %d\n", mypid, *shmem);
     sleep(1);
-    printf("(After 1s)\nProduces reads:  %d\n", *shmem);
+    printf("(After 1s)\nProduces[%d] reads:  %d\n", mypid, *shmem);
   }
 }
 
