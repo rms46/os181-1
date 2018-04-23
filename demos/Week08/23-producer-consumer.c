@@ -40,39 +40,44 @@
 
 #define PRODUCER 0
 #define CONSUMER 1
+#define LOOP     3
 
 typedef struct {
    int product;
    int turn;
 }  buffer;
 
-buffer* preparation(buffer* share_buf) {
+buffer* preparation(buffer* shrbuf) {
    char* user = getenv("USER");
    printf("This is %s\n", user);
-   share_buf = (buffer* ) mmap(NULL, sizeof(buffer), 
+   shrbuf = (buffer* ) mmap(NULL, sizeof(buffer), 
            PROTECTION, VISIBILITY, 0, 0);
-   share_buf->product = 0;
-   share_buf->turn    = PRODUCER;
-   return share_buf;
+   shrbuf->product = 0;
+   shrbuf->turn    = PRODUCER;
+   return shrbuf;
 }
 
-void producer (buffer* share_buf) {
-   int mypid = getpid();
-   printf("Producer[%d] reads:  %d\n", 
-            mypid, share_buf->product);
-   sleep(1);
-   printf("(After 1s)\n");
-   printf("Produces[%d] reads:  %d\n", 
-            mypid, share_buf->product);
+void producer (buffer* shrbuf) {
+   printf("I am Producer PID[%d]\n", getpid());
+   for (int ii=0; ii<LOOP; ii++) {
+      while(shrbuf->turn != PRODUCER)
+         ;
+      printf("Producing %d\n", 
+                   ++(shrbuf->product));
+      shrbuf->turn = CONSUMER;
+      sleep(1);
+   }
 }
 
-void consumer (buffer* share_buf) {
-   int mypid = getpid();
-   printf("Consumer[%d] reads:  %d\n", 
-            mypid, share_buf->product);
-   share_buf->product = 1;
-   printf("Consumer[%d] writes: %d\n",
-            mypid, share_buf->product);
+void consumer (buffer* shrbuf) {
+   printf("I am Consumer PID[%d]\n", getpid());
+   for (int ii=0; ii<LOOP; ii++) {
+      while(shrbuf->turn != CONSUMER)
+         ;
+      printf("Consuming %d\n", 
+               shrbuf->product);
+      shrbuf->turn = PRODUCER;
+   }
 }
 
 void main(void) {
