@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright (C) 2013-2018 CC BY-SA 3.0
  adapted from https://stackoverflow.com/
  questions/5656530/
