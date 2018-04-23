@@ -28,9 +28,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-//       1         2         3         4
-// 4567890123456789012345678901234567890
-
 #define PROTECTION \
                 (PROT_READ | PROT_WRITE)
 #define VISIBILITY \
@@ -38,56 +35,57 @@
 #define SEM_PERMS  \
  (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP)
 
-#define PRODUCER 0
-#define CONSUMER 1
-#define LOOP     3
+#define KIRIM 0
+#define AMBIL 1
+#define LOOP  2
 
 typedef struct {
-   int product;
+   int produk;
    int turn;
 }  buffer;
 
-buffer* preparation(buffer* shrbuf) {
-   char* user = getenv("USER");
-   printf("This is %s\n", user);
-   shrbuf = (buffer* ) mmap(NULL, sizeof(buffer), 
-           PROTECTION, VISIBILITY, 0, 0);
-   shrbuf->product = 0;
-   shrbuf->turn    = PRODUCER;
+buffer* persiapan(buffer* shrbuf) {
+   shrbuf = (buffer* ) mmap(NULL, 
+            sizeof(buffer), PROTECTION, 
+            VISIBILITY, 0, 0);
+   shrbuf->produk = 0;
+   shrbuf->turn    = KIRIM;
    return shrbuf;
 }
 
-void producer (buffer* shrbuf) {
-   printf("I am Producer PID[%d]\n", getpid());
+void kirim (buffer* shrbuf) {
+   printf("KIRIM PID[%d]\n", getpid());
    for (int ii=0; ii<LOOP; ii++) {
-      while(shrbuf->turn != PRODUCER)
+      while(shrbuf->turn != KIRIM)
          ;
-      printf("Producing %d\n", 
-                   ++(shrbuf->product));
-      shrbuf->turn = CONSUMER;
-      sleep(1);
+      printf("KIRIM %d\n", 
+                   ++(shrbuf->produk));
+      shrbuf->turn = AMBIL;
+      fflush(NULL);
    }
 }
 
-void consumer (buffer* shrbuf) {
-   printf("I am Consumer PID[%d]\n", getpid());
+void ambil (buffer* shrbuf) {
+   sleep(1);
+   printf("AMBIL PID[%d]\n", getpid());
    for (int ii=0; ii<LOOP; ii++) {
-      while(shrbuf->turn != CONSUMER)
+      while(shrbuf->turn != AMBIL)
          ;
-      printf("Consuming %d\n", 
-               shrbuf->product);
-      shrbuf->turn = PRODUCER;
+      printf("AMBIL %d\n", 
+               shrbuf->produk);
+      shrbuf->turn = KIRIM;
    }
 }
 
 void main(void) {
-   printf("START\n");
-   buffer* share_buf;
-   share_buf = preparation(share_buf);
-   int pid = fork();
-   if (pid == 0) consumer(share_buf);
-   else          producer(share_buf);
+   printf("START PID[%d]\n", getpid());
+   buffer* share_buf=persiapan(share_buf);
+   if (fork()) kirim (share_buf);
+   else        ambil (share_buf);
    wait(NULL);
-   printf("STOP\n");
+   printf("STOP PID[%d]\n", getpid());
 }
+
+//       1         2         3         4
+// 4567890123456789012345678901234567890
 
