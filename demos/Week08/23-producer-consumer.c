@@ -1,5 +1,3 @@
-//       1         2         3         4
-// 4567890123456789012345678901234567890
 /*
  Copyright (C) 2013-2018 CC BY-SA 3.0
  adapted from https://stackoverflow.com/
@@ -28,35 +26,63 @@
 #include <unistd.h>
 #include <sys/mman.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
-#define PROTECTION (PROT_READ     | PROT_WRITE)
-#define VISIBILITY (MAP_ANONYMOUS | MAP_SHARED)
-#define SEM_PERMS  (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP)
+//       1         2         3         4
+// 4567890123456789012345678901234567890
 
+#define PROTECTION \
+                (PROT_READ | PROT_WRITE)
+#define VISIBILITY \
+            (MAP_ANONYMOUS | MAP_SHARED)
+#define SEM_PERMS  \
+ (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP)
 
-void producer (int* shmem) {
-    int mypid = getpid();
-    printf("Producer[%d] reads:  %d\n", mypid, *shmem);
-    sleep(1);
-    printf("(After 1s)\nProduces[%d] reads:  %d\n", mypid, *shmem);
+#define PRODUCER 0
+#define CONSUMER 1
+
+typedef struct {
+   int product;
+   int turn;
+}  buffer;
+
+buffer* preparation(buffer* share_buf) {
+   char* user = getenv("USER");
+   printf("This is %s\n", user);
+   share_buf = (buffer* ) mmap(NULL, sizeof(buffer), 
+           PROTECTION, VISIBILITY, 0, 0);
+   share_buf->product = 0;
+   share_buf->turn    = PRODUCER;
+   return share_buf;
 }
 
-void consumer (int* shmem) {
-    int mypid = getpid();
-    printf("Consumer[%d] reads:  %d\n", mypid, *shmem);
-    *shmem = 1; 
-    printf("Consumer[%d] writes: %d\n", mypid, *shmem);
+void producer (buffer* share_buf) {
+   int mypid = getpid();
+   printf("Producer[%d] reads:  %d\n", 
+            mypid, share_buf->product);
+   sleep(1);
+   printf("(After 1s)\n");
+   printf("Produces[%d] reads:  %d\n", 
+            mypid, share_buf->product);
+}
+
+void consumer (buffer* share_buf) {
+   int mypid = getpid();
+   printf("Consumer[%d] reads:  %d\n", 
+            mypid, share_buf->product);
+   share_buf->product = 1;
+   printf("Consumer[%d] writes: %d\n",
+            mypid, share_buf->product);
 }
 
 void main(void) {
-  printf("START\n");
-  char* user = getenv("USER");
-  printf("This is %s\n", user);
-  int* shmem = mmap(NULL, sizeof(int), PROTECTION, VISIBILITY, 0, 0);
-  *shmem = 0;
-  int pid = fork();
-  if (pid == 0) consumer(shmem);
-  else          producer(shmem);
-  printf("STOP\n");
+   printf("START\n");
+   buffer* share_buf;
+   share_buf = preparation(share_buf);
+   int pid = fork();
+   if (pid == 0) consumer(share_buf);
+   else          producer(share_buf);
+   wait(NULL);
+   printf("STOP\n");
 }
 
