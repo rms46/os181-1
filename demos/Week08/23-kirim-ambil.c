@@ -44,36 +44,33 @@ typedef struct {
    int turn;
 }  buffer;
 
-buffer* persiapan(buffer* shrbuf) {
-   shrbuf = (buffer* ) mmap(NULL, 
+buffer* persiapan(buffer* buf) {
+   buf = (buffer* ) mmap(NULL, 
             sizeof(buffer), PROTECTION, 
             VISIBILITY, 0, 0);
-   shrbuf->produk = 0;
-   shrbuf->turn    = KIRIM;
-   return shrbuf;
+   buf->produk = 0;
+   buf->turn   = KIRIM;
+   return buf;
 }
 
-void kirim (buffer* shrbuf) {
-   printf("KIRIM PID[%d]\n", getpid());
+void kirim (buffer* buf) {
+   printf("KR KIRIM PID[%d]\n", getpid());
    for (int ii=0; ii<LOOP; ii++) {
-      while(shrbuf->turn != KIRIM)
+      while(buf->turn != KIRIM)
          ;
-      printf("KIRIM %d\n", 
-                   ++(shrbuf->produk));
-      shrbuf->turn = AMBIL;
-      fflush(NULL);
+      printf("KR %d\n",++(buf->produk));
+      buf->turn = AMBIL;
    }
 }
 
-void ambil (buffer* shrbuf) {
+void ambil (buffer* buf) {
    sleep(1);
-   printf("AMBIL PID[%d]\n", getpid());
+   printf("AM AMBIL PID[%d]\n", getpid());
    for (int ii=0; ii<LOOP; ii++) {
-      while(shrbuf->turn != AMBIL)
+      while(buf->turn != AMBIL)
          ;
-      printf("AMBIL %d\n", 
-               shrbuf->produk);
-      shrbuf->turn = KIRIM;
+      printf("AM %d\n", buf->produk);
+      buf->turn = KIRIM;
    }
 }
 
