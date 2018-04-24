@@ -67,14 +67,16 @@ buffer* persiapan(buffer* buf) {
               O_FLAGS, SEM_PERMS, 0);
    buf->mutex = sem_open(SEM_MUTEX, 
               O_FLAGS, SEM_PERMS, 1);
-   printf("KIRIMAN PERTAMA: %d\n",
+   printf("PR KIRIMAN AWAL: %d\n",
                         buf->produk);
    return buf;
 }
 
 void kirim (buffer* buf) {
    printf("KR KIRIM PID[%d]\n", getpid());
+   int krLoop = 0;
    while (buf->loop < LOOP) {
+      krLoop++;
       sem_wait(buf->mutex);
       if (buf->turn == KIRIM) {
          printf("KR %d\n",++(buf->produk));
@@ -84,12 +86,15 @@ void kirim (buffer* buf) {
       if (buf->loop == 0) 
          sem_post(buf->sync);
    }
+   printf("KR LOOPS = %d\n", krLoop);
 }
 
 void ambil (buffer* buf) {
    printf("AM AMBIL PID[%d]\n", getpid());
    sem_wait(buf->sync);
+   int amLoop = 0;
    while (buf->loop <= LOOP) {
+      amLoop++;
       sem_wait(buf->mutex);
       if(buf->turn == AMBIL) {
          printf("AM %d\n", buf->produk);
@@ -98,6 +103,7 @@ void ambil (buffer* buf) {
       }
       sem_post(buf->mutex);
    }
+   printf("AM LOOPS = %d\n", amLoop);
 }
 
 // WARNING: NO ERROR CHECK! ///////////
