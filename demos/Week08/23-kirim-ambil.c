@@ -16,14 +16,14 @@
  warranty of MERCHANTABILITY or FITNESS 
  FOR A PARTICULAR PURPOSE.
 
- * REV04 Tue Apr 24 12:15:30 DST 2018
+ * REV05 Tue Apr 24 12:26:40 WIB 2018
  * REV00 Wed Apr 18 19:50:01 WIB 2018
  * START Xxx Xxx XX XX:XX:XX WIB 2013
  */
 
 // DO NOT USE THE SAME SEMAPHORE NAME!!!!
-#define SEM_SYNC  "/semaphore-sync-rms46"
-#define SEM_MUTEX "/semaphore-mutex-rms46"
+#define SEM_SYNC  "/semaphore-sync-demo"
+#define SEM_MUTEX "/semaphore-mutex-demo"
 
 #include <fcntl.h>
 #include <stdio.h>
