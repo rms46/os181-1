@@ -16,7 +16,7 @@
  warranty of MERCHANTABILITY or FITNESS 
  FOR A PARTICULAR PURPOSE.
 
- * REV03 Tue Apr 24 09:04:50 WIB 2018
+ * REV04 Tue Apr 24 12:15:30 DST 2018
  * REV00 Wed Apr 18 19:50:01 WIB 2018
  * START Xxx Xxx XX XX:XX:XX WIB 2013
  */
@@ -43,7 +43,7 @@
 
 #define KIRIM 0
 #define AMBIL 1
-#define LOOP  10
+#define LOOP  4
 
 typedef struct {
    int    produk;
@@ -58,15 +58,17 @@ buffer* persiapan(buffer* buf) {
    buf = (buffer* ) mmap(NULL, 
             sizeof(buffer), PROT, 
             VISIBILITY, 0, 0);
-   buf->produk = 0;
-   buf->turn   = KIRIM;
    buf->loop   = 0;
+   buf->produk = 0;
+   buf->turn   = AMBIL;
    sem_unlink(SEM_SYNC);
    sem_unlink(SEM_MUTEX);
    buf->sync  = sem_open(SEM_SYNC, 
               O_FLAGS, SEM_PERMS, 0);
    buf->mutex = sem_open(SEM_MUTEX, 
               O_FLAGS, SEM_PERMS, 1);
+   printf("KIRIMAN PERTAMA: %d\n",
+                        buf->produk);
    return buf;
 }
 
@@ -87,13 +89,13 @@ void kirim (buffer* buf) {
 void ambil (buffer* buf) {
    printf("AM AMBIL PID[%d]\n", getpid());
    sem_wait(buf->sync);
-   while (buf->loop < LOOP) {
+   while (buf->loop <= LOOP) {
       sem_wait(buf->mutex);
       if(buf->turn == AMBIL) {
          printf("AM %d\n", buf->produk);
          buf->turn = KIRIM;
+         buf->loop++;
       }
-      buf->loop++;
       sem_post(buf->mutex);
    }
 }
