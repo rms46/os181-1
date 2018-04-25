@@ -6,29 +6,24 @@ DO NOT work inside the /extra folder!
 =======================================================
 
 Folder Name:
-Week08/
+Week09/
 
 To copy the folder to your home directory:
-cp -r /extra/Week08/W08-demos/ W08-demos/
+cp -r /extra/Week09/W09-demos/ W09-demos/
 =======================================================
 
 File Listing:
 * 1-READ-THIS-FIRST.txt (this file)
 * disk-images/  (directory)
-* fuse-tutorial-2017-10-03 (fuse tutorial)
-* fuse-tutorial.tgz source.
-
-ALL:
-To make sure you understand Concurency and Synchronization;
-you should repeat Week06 and Week07!  Do not forget to update
-your "README.md" file!
+* fuse-tutorial-2018-02-04 (fuse tutorial)
+* fuse-tutorial-2018-02-04.tgz (source).
 
 ===================================
-REV05 Wed Apr 18 10:31:49 WIB 2018
+REV06 Wed Apr 25 17:35:43 WIB 2018
 REV04 Mon Nov 27 17:02:11 WIB 2017
 START Mon Nov 21 14:39:48 WIB 2016
 
-# Copyright (C) 2018 Rahmat M. Samik-Ibrahim 
+# Copyright (C) 2016-2018 Rahmat M. Samik-Ibrahim 
 # http://RahmatM.Samik-Ibrahim.vLSM.org/
 # This free document is distributed in the hope that it will be 
 # useful, but WITHOUT ANY WARRANTY; without even the implied 
