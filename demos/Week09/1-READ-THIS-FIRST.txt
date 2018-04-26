@@ -19,7 +19,7 @@ File Listing:
 * fuse-tutorial-2018-02-04.tgz (source).
 
 ===================================
-REV06 Wed Apr 25 17:35:43 WIB 2018
+REV07 Thu Apr 26 12:40:43 WIB 2018
 REV04 Mon Nov 27 17:02:11 WIB 2017
 START Mon Nov 21 14:39:48 WIB 2016
 
@@ -37,7 +37,8 @@ cd disk-images/
 B. fuse-tutorial
 
 1. UBUNTU's deb packages (privilege): 
-   sudo apt-get install autoconf automake build-essential fuse libfuse-dev pkg-config sshfs
+   sudo apt-get install autoconf automake build-essential \
+                fuse libfuse-dev lynx pkg-config sshfs
 
 2. Get the tarball with
    wget http://www.cs.nmsu.edu/~pfeiffer/fuse-tutorial.tgz
