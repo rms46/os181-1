@@ -1,4 +1,4 @@
-# REV02 Mon Apr 23 16:42:47 WIB 2018
+# REV03 Tue May  1 20:35:45 DST 2018
 # START Wed Apr 18 20:55:24 WIB 2018
 
 CC=gcc
@@ -8,6 +8,7 @@ P20=20-parent
 P21=21-child
 P22=22-hello-goodbye
 P23=23-kirim-ambil
+P24=24-producer-consumer
 
 
 EXECS= \
@@ -15,6 +16,7 @@ EXECS= \
         $(P21) \
         $(P22) \
         $(P23) \
+        $(P24) \
 
 
 DEMOFILES=\
