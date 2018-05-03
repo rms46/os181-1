@@ -11,7 +11,7 @@
  warranty of MERCHANTABILITY or FITNESS 
  FOR A PARTICULAR PURPOSE.
 
- * REV01 Tue May  1 19:56:35 DST 2018
+ * REV02 Wed May  2 11:30:19 WIB 2018
  * START Wed Apr 18 19:50:01 WIB 2018
  */
 
@@ -45,6 +45,11 @@ sem_t*  ssync;
 int*    product;
 
 // WARNING: NO ERROR CHECK! ////////////
+void flushprintf(char* str,int ii) {
+   printf("%s [%d]\n", str, ii);
+   fflush(NULL);
+}
+
 void init(void) {
    product  = mmap(NULL, sizeof(int), 
                    PROT, VISIBLE, 0, 0);
@@ -61,11 +66,11 @@ void init(void) {
 
 void producer (void) {
    sem_wait(ssync);
-   printf("PRODUCER PID[%d]\n",getpid());
+   flushprintf("PRODUCER  PID",getpid());
    for (int loop = 0; loop < LOOP; loop++) {
       sem_wait(ctr_prod);
       sem_wait(mutex);
-      printf("PRODUCER %d\n",++(*product));
+      flushprintf("PRODUCT  ",++(*product));
       sem_post(mutex);
       sem_post(ctr_cons);
    }
@@ -73,12 +78,12 @@ void producer (void) {
 }
 
 void consumer (void) {
-   printf("CONSUMER PID[%d]\n",getpid());
+   flushprintf("CONSUMER  PID",getpid());
    sem_post(ssync);
    for (int loop = 0; loop < LOOP; loop++) {
       sem_wait(ctr_cons);
       sem_wait(mutex);
-      printf("CONSUMER %d\n", *product);
+      flushprintf("CONSUME  ", *product);
       sem_post(mutex);
       sem_post(ctr_prod);
    }
@@ -86,7 +91,7 @@ void consumer (void) {
 
 // WARNING: NO ERROR CHECK! ////////////
 void main(void) {
-   printf("STARTING PID[%d]\n", getpid());
+   flushprintf("STARTING  PID", getpid());
    init();
    if (fork()) producer (); //Parent
    else        consumer (); //Child
@@ -94,7 +99,7 @@ void main(void) {
    sem_unlink(SEM_COUNT2);
    sem_unlink(SEM_SYNC);
    sem_unlink(SEM_MUTEX);
-   printf("STOP PID[%d]\n", getpid());
+   flushprintf("STOP HERE PID", getpid());
 }
 
 //       1         2         3         4
