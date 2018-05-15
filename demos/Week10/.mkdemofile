@@ -1,7 +1,6 @@
 #!/bin/bash
 
 MODE644="\
-	.shsh \
 	demo-file4.txt \
 	"
 
