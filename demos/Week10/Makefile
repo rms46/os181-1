@@ -19,8 +19,8 @@ P57=57-dup
 P58=58-dup2
 P59=59-io
 P60=60-readwrite
-P61=61-os172
-P62=62-open-dup
+P61=61-open-dup
+P62=62-os172
 P63=63-os171-dup
 P64=64-os161
 
