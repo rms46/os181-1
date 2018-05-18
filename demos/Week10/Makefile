@@ -58,6 +58,7 @@ DEMOFILES=\
 	demo-file9.txt \
 	demo-fileA.txt \
 	demo-copy.txt  \
+        $(P61)-demo.txt \
         $(P62)-demo.txt \
         $(P63)-demo.txt \
         $(P64)-demo.txt \
