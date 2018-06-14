@@ -19,7 +19,7 @@ File Listing:
 * fuse-tutorial-2018-02-04.tgz (source).
 
 ===================================
-REV07 Thu Apr 26 12:40:43 WIB 2018
+REV08 Thu Jun 14 07:49:43 DST 2018
 REV04 Mon Nov 27 17:02:11 WIB 2017
 START Mon Nov 21 14:39:48 WIB 2016
 
@@ -35,6 +35,9 @@ cd disk-images/
 
 ==================================
 B. fuse-tutorial
+
+ATTN: This does not work for WSL! See also 
+      http://www.secfs.net/winfsp/blog/files/winfsp-2017.html
 
 1. UBUNTU's deb packages (privilege): 
    sudo apt-get install autoconf automake build-essential \
