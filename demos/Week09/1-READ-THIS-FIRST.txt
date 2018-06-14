@@ -38,6 +38,7 @@ B. fuse-tutorial
 
 ATTN: This does not work for WSL! See also 
       http://www.secfs.net/winfsp/blog/files/winfsp-2017.html
+      https://wpdev.uservoice.com/forums/266908-command-prompt-console-windows-subsystem-for-l/suggestions/13522845-add-fuse-filesystem-in-userspace-support-in-wsl
 
 1. UBUNTU's deb packages (privilege): 
    sudo apt-get install autoconf automake build-essential \
